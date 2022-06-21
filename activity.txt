@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+int t;
+cin>>t;
+while(t--)
+{
+int n,s,e;
+cin>>n;
+vector<pair<int ,int> >acti;
+for(int i=0;i<n;i++)
+{
+cin>>s;
+cin>>e;
+acti.push_back(make_pair(s,e));
+}
+sort(acti.begin(),acti.end());
+int endcount=-1,c=0;
+for(int i=0;i<n;i++)
+{
+if(acti[i].first>=endcount)
+{
+cout<<i<<"\n";
+c++;
+endcount=acti[i].second;
+}
+}
+cout<<"\nenter the number of maximum processes that can be done are:"<<c;
+}
+return 0;
+}

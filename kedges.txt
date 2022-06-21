@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+#include<algorithm>
+using namespace std;
+int smallestdist(vector <vector<int> > g,int n,int u,int v,int k)
+{
+if(k<0)
+return INT_MAX;
+if(k==0 && u==v)
+return 0;
+int rec,res=INT_MAX;
+for(int i=0;i<n;i++)
+{
+if(g[u][i]!=0 && u!=i && v!=i)
+{
+rec=smallestdist(g,n,i,v,k-1);
+if(rec!=INT_MAX)
+res=min(res,g[u][i]+rec);
+}
+}
+return res;
+}
+int main()
+{
+int n,key,u,v,k;
+vector <vector<int> > graph;
+int i,j;
+cin>>n;
+for(i=0;i<n;i++)
+{
+vector <int> temp;
+for(j=0;j<n;j++)
+{
+cin>>key;
+temp.push_back(key);
+}
+graph.push_back(temp);
+}
+cin>>u>>v;
+cin>>k;
+int ans;
+ans=smallestdist(graph,n,u,v,k);
+cout<<"smallest distance "<<k<<"th times from source"<<ans;
+return 0;
+}
